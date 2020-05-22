@@ -4,8 +4,10 @@ import (
 	"fmt"
 )
 
+func add(){
+	xd
+}
 
 func main() {
-	
 	
 }
