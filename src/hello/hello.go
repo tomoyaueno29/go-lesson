@@ -21,4 +21,10 @@ func main() {
 
 	r3 := cal(100, 2)
 	fmt.Println(r3)
+
+	f := func(x int) {
+		fmt.Println("aaa")
+		fmt.Print(x)
+	}
+	f(100)
 }
