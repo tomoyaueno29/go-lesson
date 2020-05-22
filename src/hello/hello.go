@@ -9,10 +9,10 @@ func add(x int, y int) (int, int) {
 }
 
 
-func cal(price int, item int) (int) {
+func cal(price int, item int) (result int) {
 
-	result := price * item
-	return result
+	result = price * item
+	return
 }
 
 func main() {
