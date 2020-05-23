@@ -4,12 +4,9 @@ import (
 	"fmt"
 )
 
+const Pi = 3.14
+
 func main() {
-
-	var i int = 1
-	var t bool = true
-
-	fmt.Println(i, t)
-
 	
+	fmt.Println(xi, xf64, xf32 , xs, xt, xf)
 }
