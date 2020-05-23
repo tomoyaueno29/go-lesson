@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 const Pi = 3.14
@@ -10,17 +11,11 @@ const Pi = 3.14
 
 func main() {
 
-	// var(
-	// 	u8 uint       = 255
-	// 	i8 int8       = 127
-	// 	f32 float32   = 0.2
-	// 	c64 complex64 = -5 + 12i
-	// )
-	// fmt.Println(u8, i8, f32, c64)
+	fmt.Println("Hello World")
+	fmt.Println(string("Hello World"[0]))
 
-	// fmt.Printf("%T\n%v\n", u8, u8)
+	var s string = "Hello World"
+	s = strings.Replace(s, "H", "X", 1)
+	fmt.Println(s)
 
-	x := 0
-	fmt.Println(x)
-	x++
 }
