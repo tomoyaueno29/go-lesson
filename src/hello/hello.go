@@ -7,7 +7,11 @@ import (
 
 func main() {
 
-	t, f := true, false
-	fmt.Printf("%T %v", t, t)
-	fmt.Printf("%T %v", f, f)
+	var x int = 1
+	xx := float64(x)
+	fmt.Printf("%T %v %f\n", xx,xx, xx)
+
+	h := "Hello World"
+	fmt.Println(string(h[0]))
+	
 }
