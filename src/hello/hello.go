@@ -7,10 +7,11 @@ import (
 
 func main() {
 	
-	result := by2(10)
-	fmt.Println(result)
+	for i := 0; i<10; i++{
+		if i==3{
+			continue
+		}
 
-	if result == "ok"{
-		fmt.Println("great")
+		fmt.Println(i)
 	}
 }
