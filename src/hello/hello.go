@@ -12,6 +12,18 @@ func main() {
 			continue
 		}
 
-		fmt.Println(i)
+		// fmt.Println(i)
+	}
+
+	var sum int = 1
+	for sum<10 {
+		sum+=sum
+		fmt.Println(sum)
+	}
+	fmt.Println(sum)
+
+	// 無限ループ
+	for {
+		fmt.Println("hello")
 	}
 }
