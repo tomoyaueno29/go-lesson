@@ -5,25 +5,18 @@ import (
 
 )
 
+func pros() func() int {
+
+	x := 0
+	return func() int{
+		x++
+		return x
+	}
+}
+
 func main() {
-	
-	for i := 0; i<10; i++{
-		if i==3{
-			continue
-		}
-
-		// fmt.Println(i)
-	}
-
-	var sum int = 1
-	for sum<10 {
-		sum+=sum
-		fmt.Println(sum)
-	}
-	fmt.Println(sum)
-
-	// 無限ループ
-	for {
-		fmt.Println("hello")
-	}
+	c := pros()
+	fmt.Println(c())
+	fmt.Println(c())
+	fmt.Println(c())
 }
