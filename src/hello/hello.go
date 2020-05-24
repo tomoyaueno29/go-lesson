@@ -5,21 +5,21 @@ import (
 
 )
 
+func add(x, y int) (int, int) {
+	return x+y, x-y
+}
+
+func cal(price, item int) (result int, tax float64) {
+	result = price * item
+	tax = item/price
+	
+}
 
 func main() {
-
-	num := 11
-	if num % 2 == 0 {
-		fmt.Println("by 2")
-	}else if num%3==0{
-		fmt.Println("by 3")
-	}else{
-		fmt.Println("else")
-	}
-
-	x, y := 10, 10
-	if x == 10 && y == 10{
-		
-	}
 	
+	r1, r2 := add(10, 20)
+	fmt.Println(r1, r2)
+
+	r3 := cal(100, 2)
+	fmt.Println(r3)
 }
