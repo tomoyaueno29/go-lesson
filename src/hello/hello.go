@@ -5,20 +5,20 @@ import (
 )
 
 type Vertex struct{
-	x int
+	X int
 	Y int
+	Z string
 }
 
 func main() {
 
-	s := make([]int, 0)
-	fmt.Printf("%T\n", s)
-	/*
-	var p *int = new(int)
-	fmt.Println(*p)
-	*p++
-	fmt.Println(*p)
-	var x *int = new(int)
-	fmt.Println(*x)
-	*/
+	v := Vertex{X: 1, Y: 2, Z: "aaa"}
+	fmt.Println(v)
+	fmt.Println(v.X)
+
+	v4 := Vertex{}
+	fmt.Println(v4)
+
+	var v5 Vertex
+	fmt.Println(v5)
 }
