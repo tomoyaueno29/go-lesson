@@ -1,15 +1,24 @@
 package main
 
 import (
+	"os"
+	"log"
 	"fmt"
-
 )
 
-func LoggingSettings(logfile string){
-	
-} 
-
 func main() {
-	 m := map[string]int{"Mike":20, "Nancy": 24, "Messi":30}
-	 fmt.Println(m)
+	 file, err := os.Open("./lesson.go")
+
+	 if err != nil {
+		 log.Fatalln("EXIT", err)
+	 }
+	 defer file.Close()
+	 data := make([]byte, 100)
+
+	 count, err := file.Read(data)
+
+	 if err != nil{
+		 log.Fatalln("error")
+	 }
+	 fmt.Println(count, string(data))
 }
