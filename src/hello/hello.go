@@ -5,18 +5,8 @@ import (
 
 )
 
-func pros() func() int {
-
-	x := 0
-	return func() int{
-		x++
-		return x
-	}
-}
-
 func main() {
-	c := pros()
-	fmt.Println(c())
-	fmt.Println(c())
-	fmt.Println(c())
+	 m := map[string]int{"Mike":20, "Nancy": 24, "Messi":30}
+	 fmt.Println(m)
+
 }
