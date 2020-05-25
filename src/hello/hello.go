@@ -10,10 +10,15 @@ func one(x *int){
 }
 
 func main() {
-	var x int = 100
-	fmt.Println(x)
-	one(&x)
 
-	fmt.Println(x)
-	
+	s := make([]int, 0)
+	fmt.Printf("%T\n", s)
+	/*
+	var p *int = new(int)
+	fmt.Println(*p)
+	*p++
+	fmt.Println(*p)
+	var x *int = new(int)
+	fmt.Println(*x)
+	*/
 }
