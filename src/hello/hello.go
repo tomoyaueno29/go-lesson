@@ -4,30 +4,15 @@ import (
 	"fmt"
 )
 
-type Vertex struct{
-	X int
-	Y int
-	Z string
-}
-
-func changeVertex(v *Vertex){
-	(*v).X = 1000
-}
-
 func main() {
-	v := Vertex{1,2, "test"}
-	changeVertex(&v)
-	fmt.Println(v)
-
-	/*
-	v := Vertex{X: 1, Y: 2, Z: "aaa"}
-	fmt.Println(v)
-	fmt.Println(v.X)
-
-	v4 := Vertex{}
-	fmt.Println(v4)
-
-	var v5 Vertex
-	fmt.Println(v5)
-	*/
+    var i int = 100
+    var j int = 200
+    var p1 *int
+    var p2 *int
+    p1 = &i
+    p2 = &j
+    i = *p1 + *p2
+    p2 = p1
+    j = *p2 + i
+    fmt.Println(j)
 }
