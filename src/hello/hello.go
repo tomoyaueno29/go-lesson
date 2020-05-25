@@ -6,12 +6,7 @@ import (
 )
 
 func main() {
-	
-	for i := 0; i<10; i++{
-		if i==3{
-			continue
-		}
+	 m := map[string]int{"Mike":20, "Nancy": 24, "Messi":30}
+	 fmt.Println(m)
 
-		fmt.Println(i)
-	}
 }
