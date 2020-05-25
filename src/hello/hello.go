@@ -4,9 +4,9 @@ import (
 	"fmt"
 )
 
-func one(x *int){
-	*x = 50000
-	fmt.Println(*x)
+type Vertex struct{
+	x int
+	Y int
 }
 
 func main() {
