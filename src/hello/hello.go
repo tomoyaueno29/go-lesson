@@ -2,37 +2,28 @@ package main
  
 import (
     "fmt"
-    "time"
+    // "time"
 )
 
-func recieve(name string, ch <-chan int){
+func ping(pings chan<- string, msg string){
 
-    for{
-        i, ok := <-ch
-
-        if ok==false{
-            break
-        }
-        fmt.Println(name, i)
-    }
-    fmt.Println(name + " is done ")
+    pings <- msg
 }
+
+func 
+
 
 func main(){
     
-   ch := make(chan int, 20)
+    pings := make(chan string, 1)
+    pongs := make(chan string, 1)
 
-   go recieve("1st goroutine", ch)
-   go recieve("2st goroutine", ch)
-   go recieve("3st goroutine", ch)
+    go ping(pings, msg)
+    go ping(pongs, msg)
 
-   i := 0
-   for i < 100 {
-       ch <- i
-       i++
-       
-   }
-   close(ch)
+    message <- "hello"
+    message <- "world"
 
-   time.Sleep(3 * time.Second)
+    fmt.Println(<-message)
+    fmt.Println(<-message)
 }
