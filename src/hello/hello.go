@@ -2,29 +2,34 @@ package main
  
 import (
     "fmt"
-    // "time"
+    "time"
+    "sync"
 )
 
-func ping(pings chan<- string, msg string){
+func goroutine(s string, wg *sync.WaitGroup ){
 
-    pings <- msg
+    for i := 0; i < 5; i++{
+        time.Sleep(100 * time.Millisecond)
+        fmt.Println(s)
+    }
+    wg.Done()
 }
 
-func pong(pings chan string, pongs chan string){
+func normal(s string){
 
-    msg := <-pings
-    pongs <- msg
+    for i := 0; i < 5; i++{
+        time.Sleep(100 * time.Millisecond)
+        fmt.Println(s)
+    }
 }
 
 
 func main(){
+    var wg sync.WaitGroup
+    wg.Add(1)
+    go goroutine("world", &wg)
+    normal("hello")
+    // time.Sleep(2000 * time.Millisecond)
+    wg.Wait()
     
-    pings := make(chan string, 1)
-    pongs := make(chan string, 1)
-    var msg string = "Hello"
-    
-    go ping(pings, msg)
-    go ping(pings, pongs)
-
-    fmt.Println(<-pongs)
 }
