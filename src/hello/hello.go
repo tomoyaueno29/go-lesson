@@ -9,8 +9,9 @@ func  goroutine1(s []int, c chan int){
     sum := 0
     for _, v := range s {
         sum += v
+        c <- sum
     }
-    c <- sum
+    close(c)
 }
 
 func main(){
@@ -18,5 +19,7 @@ func main(){
     c := make(chan int)
     go goroutine1(s, c)
     
-    
+    for i := range c{
+        fmt.Println(i)
+    }
 }
