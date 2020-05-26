@@ -4,15 +4,36 @@ import (
 	"fmt"
 )
 
-type MyInt int
+type Human interface {
+    Say() string
+}
 
-func (i MyInt) Double() int {
-    fmt.Printf("%T %v\n", i, i)
+type Person struct {
+    Name string
+}   
 
-    return int(i * 2)
+type Dog struct {
+    Name string
+}
+
+func (p *Person) Say() string {
+    (*p).Name = "Mr." + p.Name
+    fmt.Println(p.Name)
+    return p.Name
+}
+
+func Drivecar(human Human){
+    if human.Say() == "Mr.Mike"{
+        fmt.Println("Run")
+    }else{
+        fmt.Println("Get out")
+    }
 }
 
 func main() {
-    myInt := MyInt(10)
-    fmt.Println(myInt.Double())
+    
+    var mike Human = &Person{"Mike"}
+    var dog Dog = Dog{"dog"}
+    Drivecar(mike)
+    Drivecar(dog)
 }
