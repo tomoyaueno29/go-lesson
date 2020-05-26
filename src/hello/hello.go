@@ -2,18 +2,26 @@ package main
  
 import (
     "fmt"
+    // "time"
 )
  
-type Vertex struct{
-    X, Y int
+func goroutine(s string){
+
+    for i := 0; i<5; i++{
+        // time.Sleep(100*time.Millisecond)
+        fmt.Println(s)
+    }
 }
 
-func (v Vertex) String() string {
-    return fmt.Sprintf("X is %v! Y is %v!", v.X, v.Y)
+func normal(s string){
+
+    for i := 0; i<5; i++{
+        // time.Sleep(100*time.Millisecond)
+        fmt.Println(s)
+    }
 }
- 
+
 func main(){
-    v := Vertex{3, 4}
-    fmt.Println(v)
-    fmt.Println(v.String())
+    go goroutine("world")
+    normal("hello")
 }
