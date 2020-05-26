@@ -8,24 +8,20 @@ import (
 
 func main(){
     
-    tick := time.Tick(100 * time.Millisecond)
-    boom := time.After(500 * time.Millisecond)
-    OuterLoop2:
-    for {
-        select {
+    c := make(map[string]int)
+    go func(){  
+        for i := 0; i<10; i++{
 
-        case t := <- tick:
-            fmt.Println("tick.", t)
-        case <-boom:
-            fmt.Println("BOOM!")
-            break OuterLoop2
-            // return 
-        default:
-            fmt.Println("    .")
-            time.Sleep(50 * time.Millisecond)
+            c["key"] += 1
         }
-        
-    }
+    }()
 
-    fmt.Println("############")
+    go func(){  
+        for i := 0; i<10; i++{
+
+            c["key"] += 1
+        }
+    }()
+    time.Sleep(1 * time.Second)
+    fmt.Println(c, c["key"])
 }
