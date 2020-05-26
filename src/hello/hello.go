@@ -5,27 +5,34 @@ import (
     "time"
 )
 
+func recieve(name string, ch <-chan int){
+
+    for{
+        i, ok := <-ch
+
+        if ok==false{
+            break
+        }
+        fmt.Println(name, i)
+    }
+    fmt.Println(name + " is done ")
+}
 
 func main(){
     
-    tick := time.Tick(100 * time.Millisecond)
-    boom := time.After(500 * time.Millisecond)
-    OuterLoop2:
-    for {
-        select {
+   ch := make(chan int, 20)
 
-        case t := <- tick:
-            fmt.Println("tick.", t)
-        case <-boom:
-            fmt.Println("BOOM!")
-            break OuterLoop2
-            // return 
-        default:
-            fmt.Println("    .")
-            time.Sleep(50 * time.Millisecond)
-        }
-        
-    }
+   go recieve("1st goroutine", ch)
+   go recieve("2st goroutine", ch)
+   go recieve("3st goroutine", ch)
 
-    fmt.Println("############")
+   i := 0
+   for i < 100 {
+       ch <- i
+       i++
+       
+   }
+   close(ch)
+
+   time.Sleep(3 * time.Second)
 }
