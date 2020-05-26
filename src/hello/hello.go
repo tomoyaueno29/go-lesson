@@ -4,16 +4,12 @@ import (
     "fmt"
 )
 
-type Vertex struct {
-    X, Y int
+type Student struct {
+    Name string
+    Math, English float64
+
 }
 
-func (v Vertex) Scale() int{
-
-    return v.X + v.Y
-}
- 
 func main(){
-    v := Vertex{3, 4}
-    fmt.Println(v.Scale())
+   
 }
