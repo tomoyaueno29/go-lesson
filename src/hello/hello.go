@@ -3,14 +3,16 @@ package main
 import (
     "fmt"
     // "time"
+    "sync"
 )
  
-func goroutine(s string){
+func goroutine(s string, wg *sync.WaitGroup){
 
     for i := 0; i<5; i++{
         // time.Sleep(100*time.Millisecond)
         fmt.Println(s)
     }
+    wg.Done()
 }
 
 func normal(s string){
@@ -22,6 +24,10 @@ func normal(s string){
 }
 
 func main(){
-    go goroutine("world")
+    var wg sync.WaitGroup
+    wg.Add(1)
+    go goroutine("world", &wg)
     normal("hello")
+
+    wg.Wait()
 }
