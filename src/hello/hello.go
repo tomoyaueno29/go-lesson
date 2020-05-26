@@ -10,20 +10,21 @@ func ping(pings chan<- string, msg string){
     pings <- msg
 }
 
-func 
+func pong(pings chan string, pongs chan string){
+
+    msg := <-pings
+    pongs <- msg
+}
 
 
 func main(){
     
     pings := make(chan string, 1)
     pongs := make(chan string, 1)
-
+    var msg string = "Hello"
+    
     go ping(pings, msg)
-    go ping(pongs, msg)
+    go ping(pings, pongs)
 
-    message <- "hello"
-    message <- "world"
-
-    fmt.Println(<-message)
-    fmt.Println(<-message)
+    fmt.Println(<-pongs)
 }
