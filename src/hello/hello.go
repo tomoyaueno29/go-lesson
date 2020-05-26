@@ -11,7 +11,7 @@ func producer(first chan int){
     }
 }
 
-func multi2(first chan int, second chan int){
+func multi2(first <-chan int, second chan<- int){
     defer close(second)
     for i := range first{
         second <- i * 2
