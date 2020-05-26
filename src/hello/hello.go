@@ -5,34 +5,34 @@ import (
     "time"
 )
 
-type Counter struct {
+func recieve(name string, ch <-chan int){
 
-    v map[string]int
-    mux sync.Mutex
+    for{
+        i, ok := <-ch
 
-}
-
-func (c * Counter) Inc(key string){
-    c.mux.Lock()
-    c.v[key]++
+        if ok==false{
+            break
+        }
+        fmt.Println(name, i)
+    }
+    fmt.Println(name + " is done ")
 }
 
 func main(){
     
-    c := make(map[string]int)
-    go func(){  
-        for i := 0; i<10; i++{
+   ch := make(chan int, 20)
 
-            c["key"] += 1
-        }
-    }()
+   go recieve("1st goroutine", ch)
+   go recieve("2st goroutine", ch)
+   go recieve("3st goroutine", ch)
 
-    go func(){  
-        for i := 0; i<10; i++{
+   i := 0
+   for i < 100 {
+       ch <- i
+       i++
+       
+   }
+   close(ch)
 
-            c["key"] += 1
-        }
-    }()
-    time.Sleep(1 * time.Second)
-    fmt.Println(c, c["key"])
+   time.Sleep(3 * time.Second)
 }
