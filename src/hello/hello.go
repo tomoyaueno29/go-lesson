@@ -28,4 +28,14 @@ func main(){
 
     go goroutine1(c1)
     go goroutine2(c2)
+
+    for {
+        select {
+        case msg1 := <-c1:
+            fmt.Println(msg1)
+
+        case msg2 := <-c2:
+            fmt.Println(msg2)
+        }
+    }
 }
