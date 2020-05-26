@@ -5,6 +5,17 @@ import (
     "time"
 )
 
+type Counter struct {
+
+    v map[string]int
+    mux sync.Mutex
+
+}
+
+func (c * Counter) Inc(key string){
+    c.mux.Lock()
+    c.v[key]++
+}
 
 func main(){
     
