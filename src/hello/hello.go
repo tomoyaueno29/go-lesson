@@ -1,20 +1,29 @@
 package main
-
+ 
 import (
-	"fmt"
+    "fmt"
 )
-
-type Person struct {
-    Name string
-    Age int
+ 
+type Vertex struct{
+    X, Y int
 }
 
-func (p Person) String() string {
-    return fmt.Sprintf("My name is %v", p.Name)
+func (v Vertex) Plus() int{
+    return v.X + v.Y
 }
 
-func main() {
-    // var i interface{} = 10
-    mike := Person{"Mike", 22}
-    fmt.Println(mike)
+
+func (v *Vertex) Scale(i int){
+    v.X = v.X * i
+    v.Y = v.Y * i
+}
+
+// func Plus(v Vertex) int {
+//     return v.X + v.Y
+// }
+ 
+func main(){
+    v := Vertex{3, 4}
+    // fmt.Println(Plus(v))
+    fmt.Println(v.Plus())
 }
