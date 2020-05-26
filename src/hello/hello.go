@@ -3,21 +3,17 @@ package main
 import (
     "fmt"
 )
-
-type User struct {
-    gender string
-    age int
-
+ 
+type Vertex struct{
+    X, Y int
 }
 
-func (u User) String() string{
-    return fmt.Sprintf("My name is %v\n", u.gender)
+func (v Vertex) String() string {
+    return fmt.Sprintf("X is %v! Y is %v!", v.X, v.Y)
 }
-
+ 
 func main(){
-   
-    u := User{gender: "male", age: 22}
-    fmt.Println(u.gender)
-    fmt.Println(u.age)
-    fmt.Println(u.String())
+    v := Vertex{3, 4}
+    fmt.Println(v)
+    fmt.Println(v.String())
 }
