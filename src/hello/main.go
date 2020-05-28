@@ -2,29 +2,34 @@ package main
 
 import (
     "fmt"
-
 )
 
-func integers() func() int {
+// func reciever( ch <-chan int) {
 
-    i := 0
-    return func() int{
-        i++
-        return i
-    }
-}
-
+//     for {
+//         i := <-ch
+//         fmt.Println(i)
+//     }
+// }
 
 func main() {
 
-    s := integers()
-    fmt.Println(s())
-    fmt.Println(s())
-    fmt.Println(s())
+    // ch := make(chan int)
 
-    // a := []int{1,2,3,4}
-    // fmt.Println(a)
+    // go reciever(ch)
 
-    a := make([]int, 3, 4)
-    fmt.Println(cap(a))
+    // i := 0
+    // for i < 100 {
+    //     ch <- i
+    //     i++
+    // }
+
+    ch := make(chan int, 3)
+    ch <- 1
+    ch <- 2
+    ch <- 3
+    close(ch)
+    fmt.Println(<- ch)
+    fmt.Println(<- ch)
+    fmt.Println(<- ch)
 }
