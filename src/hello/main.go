@@ -2,24 +2,29 @@ package main
 
 import (
     "fmt"
-    // "io/ioutil"
+
 )
-func returnFunc() func(string) string{
 
-    var store string
+func integers() func() int {
 
-    return func(next string) string {
-
-        s := store
-        store = next
-        return s
+    i := 0
+    return func() int{
+        i++
+        return i
     }
 }
 
 
 func main() {
 
-   x := returnFunc()
-   fmt.Println(x("aaaa"))
-   fmt.Println(x("bbbb"))
+    s := integers()
+    fmt.Println(s())
+    fmt.Println(s())
+    fmt.Println(s())
+
+    // a := []int{1,2,3,4}
+    // fmt.Println(a)
+
+    a := make([]int, 3, 4)
+    fmt.Println(cap(a))
 }
