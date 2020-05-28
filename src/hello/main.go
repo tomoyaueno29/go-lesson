@@ -2,32 +2,32 @@ package main
 
 import (
     "fmt"
-    "time"
-    // "sort"
-	// "github.com/markcheno/go-quote"
-	// "github.com/markcheno/go-talib"
 )
+func incrementGenerator () (func() int){
 
-func longProcess(ch chan string){
+    x := 0
+    return func() int{
+        x++
+        return x
+    }
+}
 
-    fmt.Println("run")
-    time.Sleep(2 * time.Second)
-    fmt.Println("finish")
-    ch <- "result"
+func circleArea(pi float64) func(radius float64) float64{
+
+    return func(radius float64) float64 {
+        return pi * radius * radius
+    }
 }
 
 func main() {
-    ch := make(chan string)
-    ctx := context.Background()
+    // counter := incrementGenerator()
+    // fmt.Println(counter())
+    // fmt.Println(counter())
+    // fmt.Println(counter())
 
-    go longProcess(ch)
+    c1:= circleArea(3.14)
+    fmt.Println(c1(2))
 
-    for {
-        select {
-        
-        case <- ch:
-            fmt.Println("seccess")
-            return
-        }
-    }
+    c2 := circleArea(3)
+    fmt.Println(c2(2))
 }
