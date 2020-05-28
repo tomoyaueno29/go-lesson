@@ -2,25 +2,24 @@ package main
 
 import (
     "fmt"
-    // "sort"
-	// "github.com/markcheno/go-quote"
-	// "github.com/markcheno/go-talib"
+    // "io/ioutil"
 )
+func returnFunc() func(string) string{
 
-const (
-    c1 = iota
-    c2 
-    c3
-)
+    var store string
 
-const (
-    _ = iota
-    KB int = 1 << (10*iota)
-    MB
-    GB
-)
+    return func(next string) string {
+
+        s := store
+        store = next
+        return s
+    }
+}
+
 
 func main() {
-    fmt.Println(c1, c2, c3)
-    fmt.Println(KB, MB, GB)
+
+   x := returnFunc()
+   fmt.Println(x("aaaa"))
+   fmt.Println(x("bbbb"))
 }
