@@ -1,5 +1,6 @@
 package mylib
 
+
 func Average(s []int) int {
 
 	total := 0
