@@ -7,6 +7,11 @@ import (
 	// "github.com/markcheno/go-talib"
 )
 
+type P struct {
+    Name string
+    Age int
+}
+
 func main() {
 	// spy, _ := quote.NewQuoteFromYahoo("spy", "2016-01-01", "2016-04-01", quote.Daily, true)
 	// fmt.Print(spy.CSV())
@@ -15,4 +20,11 @@ func main() {
     
     match, _ := regexp.MatchString("a([a-z]+)e", "app0le")
     fmt.Println(match)
+
+    
+    r2 := regexp.MustCompile("^/(edit[save]view)/([a-zA-Z0-9]+)$")
+    fs := r2.FindString("/view/test")
+    fmt.Println(fs)
+
+    fss := r2.Find
 }
