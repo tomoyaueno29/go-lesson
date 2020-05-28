@@ -9,5 +9,4 @@ func TestAverage(t *testing.T){
 	if v != 3 {
 		t.Error("Expecting 3, got", v)
 	}
-
 }
