@@ -2,25 +2,32 @@ package main
 
 import (
     "fmt"
+    "time"
     // "sort"
 	// "github.com/markcheno/go-quote"
 	// "github.com/markcheno/go-talib"
 )
 
-const (
-    c1 = iota
-    c2 
-    c3
-)
+func longProcess(ch chan string){
 
-const (
-    _ = iota
-    KB int = 1 << (10*iota)
-    MB
-    GB
-)
+    fmt.Println("run")
+    time.Sleep(2 * time.Second)
+    fmt.Println("finish")
+    ch <- "result"
+}
 
 func main() {
-    fmt.Println(c1, c2, c3)
-    fmt.Println(KB, MB, GB)
+    ch := make(chan string)
+    ctx := context.Background()
+
+    go longProcess(ch)
+
+    for {
+        select {
+        
+        case <- ch:
+            fmt.Println("seccess")
+            return
+        }
+    }
 }
