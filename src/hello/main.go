@@ -4,38 +4,51 @@ import (
     "fmt"
 )
 
-type Vertex struct {
-    X, Y int
+type Income interface {
+    calculate() string
 }
 
-func (v Vertex) Area() int {
-    return v.X * v.Y
+type google struct {
+    workingYear, baseSalary, performance int
 }
 
-func (v *Vertex) Scale(i int) {
-    v.X*=i
-    v.Y*=i
+type yahoo struct {
+    performance, workingYear, baseSalary int
 }
 
-type Vertex3D struct {
-    Vertex
-    z int
+func (g google) calculate() int {
+    return g.baseSalary + (1000 * g.performance)
 }
 
-func (v Vertex3D) Area3D() int {
-    return v.X * v.Y * v.z
-}
-
-func (v *Vertex3D) Scale(i int) {
-    v.X*=i
-    v.Y*=i
-    v.z*=i
+func (y yahoo) calculate() int {
+    return y.baseSalary + (20000 * y.workingYear)
 }
 
 func main() {
-    v := Vertex{3, 4}
 
-    v2 := Vertex3D{5, 6}
-    v.Scale(10)
-    fmt.Println(v.Area())
+    hanako := google{
+        workingYear: 5,
+        baseSalary: 100000,
+        performance: 190,
+    }
+    choko := yahoo{
+        baseSalary: 60000,
+        workingYear: 50,
+    }
+    motoko := yahoo{
+        baseSalary: 40000,
+        workingYear: 25,
+    }
+
+    workers := []Income{hanako, choko, motoko}
+    fmt.Printf("Total income: %d\n", calculateIncome(workers))
+}
+
+func calculateIncome(ic []Income) int {
+    sum := 0
+    for _, worker := range ic{
+        sum += worker.calculate()
+    }
+
+    return sum
 }
