@@ -2,34 +2,19 @@ package main
 
 import (
     "fmt"
+    // "net/http"
+    "net/url"
+    // "io/ioutil"
 )
 
-// func reciever( ch <-chan int) {
-
-//     for {
-//         i := <-ch
-//         fmt.Println(i)
-//     }
-// }
-
 func main() {
+    // resp, _ := http.Get("http://ezample.com")
+    // defer resp.Body.Close()
+    // body, _ := ioutil.ReadAll(resp.Body)
+    // fmt.Println(string(body))
 
-    // ch := make(chan int)
-
-    // go reciever(ch)
-
-    // i := 0
-    // for i < 100 {
-    //     ch <- i
-    //     i++
-    // }
-
-    ch := make(chan int, 3)
-    ch <- 1
-    ch <- 2
-    ch <- 3
-    close(ch)
-    fmt.Println(<- ch)
-    fmt.Println(<- ch)
-    fmt.Println(<- ch)
+    base, _ := url.Parse("http://example.com")
+    reference, _ := url.Parse("/test?a=1&b-=2")
+    endpoint := base.ResolveReference(reference).String()
+    fmt.Println(endpoint)
 }
