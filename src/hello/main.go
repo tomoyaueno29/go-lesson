@@ -31,10 +31,13 @@ type Person struct {
 }
 
 func main() {
-    p := Person{Name:"ichi", Age:17}
-    p2 := &p
-    p2.Name = "taro"
-    p2.Age = 22
-    fmt.Printf("%v\n", p)
-    fmt.Printf("%v\n", *p2)
+    name := "taro"
+    namepoint := &name
+
+     fmt.Printf("%v\n", namepoint)
+     fmt.Printf("%v\n", *namepoint)
+
+     *namepoint = "jiro"
+     fmt.Printf("%v\n", *namepoint)
+     fmt.Printf("%v\n", name)
 }
