@@ -21,4 +21,7 @@ func main() {
 
     v7 := &Vertex{}
     fmt.Printf("%T\n",v7)
+
+    s := make([]int, 0)
+    t := []int{}
 }
