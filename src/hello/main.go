@@ -1,23 +1,13 @@
 package main
 
 import (
-    
+    "fmt"
+    "time"
 )
-
-type ConfigList struct {
-    Port      int
-    DbName    string
-    SQLDriver string
-}
-
-var Config ConfigList
-
-func init() {
-    cfg, _ := inim.Load("config.ini")
-    
-}
 
 func main() {
     
-
+    t := time.Now()
+    fmt.Println(t.Format(time.RFC3339))
+    fmt.Println(t.Year(), t.Day(), t.Hour(), t.Month())
 }
