@@ -1,21 +1,23 @@
 package main
 
 import (
-    "context"
-    "fmt"
-    "time"
+    
 )
 
-func longProcess(ctx context.Context){
-    fmt.Println("Wait...")
-    time.Sleep(1 * time.Second)
-    fmt.Println("Done")
+type ConfigList struct {
+    Port      int
+    DbName    string
+    SQLDriver string
+}
+
+var Config ConfigList
+
+func init() {
+    cfg, _ := inim.Load("config.ini")
+    
 }
 
 func main() {
-    ctx := context.TODO()
-    go longProcess(ctx)
-    go longProcess(ctx)
-    go longProcess(ctx)
-    time.Sleep(5 * time.Second)
+    
+
 }
