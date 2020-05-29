@@ -6,34 +6,19 @@ import (
 
 type Vertex struct {
     X, Y int
-    S string
 }
 
-func changeVertex(v Vertex) {
-    v.X = 1000
+func (v Vertex) Area() int{
+    return v.X * v.Y
 }
 
-func changeVertex2(v *Vertex) {
-    (*v).X = 1000
+func (v *Vertex) Scale(i int) {
+    v.X*=i
+    v.Y*=i
 }
 
 func main() {
-    v := Vertex{1, 2, "test"}
-    v2 := &Vertex{1, 2, "test"}
-    changeVertex(v)
-    fmt.Println(v)
-    changeVertex2(v2)
-    fmt.Println(*v2)
-    
-    // v := Vertex{Name: "Mike", Age:22}
-    // fmt.Println(v.Name, v.Age)
-
-    // v4 := Vertex{}
-    // fmt.Println(v4)
-
-    // v6 := new(Vertex)
-    // fmt.Printf("%T\n", v6)
-
-    // v7 := &Vertex{}
-    // fmt.Printf("%T\n",v7)
+    v := &Vertex{3, 4}
+    v.Scale(10)
+    fmt.Println(v.Area())
 }
