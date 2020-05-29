@@ -4,31 +4,21 @@ import (
     "fmt"
 )
 
-func one(x *int) {
-    *x = 1
+type Vertex struct {
+    Name string
+    Age int
 }
-
 func main() {
-    /*
-    // var n int = 100
-    var p *int = new(int)
-    fmt.Println(*p)
-    *p++
-    fmt.Println(*p)
-    */
+    
+    v := Vertex{Name: "Mike", Age:22}
+    fmt.Println(v.Name, v.Age)
 
-    s := make([]int, 0)
-    fmt.Printf("%T\n", s)
+    v4 := Vertex{}
+    fmt.Println(v4)
 
-    ch := make(chan int)
-    fmt.Printf("%T\n", ch)
+    v6 := new(Vertex)
+    fmt.Printf("%T\n", v6)
 
-    m := make(map[string]int)
-    fmt.Printf("%T\n", m)
-
-    var p *int = new(int)
-    fmt.Printf("%T\n", p)
-
-    var st = new(struct{})
-    fmt.Printf("%T\n", st)
+    v7 := &Vertex{}
+    fmt.Printf("%T\n",v7)
 }
