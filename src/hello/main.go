@@ -1,33 +1,21 @@
 package main
 
 import (
+    "context"
     "fmt"
-    "encoding/json"
+    "time"
 )
 
-type Person struct {
-    Name      string    `json:"name"`
-    Age       int       `json:"age,omitempty"`
-    Nicknames []string  `json:"nicknames"`
-}
-
-func (p Person) MarshalJSON() ([]byte, error) {
-    type Person2 struct{
-        Name string
-    }
-
-    var p2 Person
-    err := json
+func longProcess(ctx context.Context){
+    fmt.Println("Wait...")
+    time.Sleep(1 * time.Second)
+    fmt.Println("Done")
 }
 
 func main() {
-    b := []byte(`{"name":"mike", "age":20, "nicknames":["a","b","c"]}`)
-    var p Person
-    if err := json.Unmarshal(b, &p); err != nil {
-        fmt.Println(err)
-    }
-    fmt.Println(p.Name, p.Age, p.Nicknames)
-
-    v, _ := json.Marshal(p)
-    fmt.Println(string(v))
+    ctx := context.TODO()
+    go longProcess(ctx)
+    go longProcess(ctx)
+    go longProcess(ctx)
+    time.Sleep(5 * time.Second)
 }
