@@ -7,14 +7,28 @@ import (
     // "time"
 )
 
+type T struct{
+
+}
+
 type User struct {
-    Id int
-    Name string
-    Email string
+    Id    int       `json:"id,string"`
+    Name  string    `json:"name,omitempty"`
+    Email string    `json:"email"`
+    T     *T         `json:"T,omitempty"`
+}
+
+func (u User) MarshalJSON() ([]byte, error) {
+
+    v, _ := json.Marshal(&struct{
+        Name string
+    }{
+        
+    })
 }
 
 func main() {
-    b := []byte(`{"id":1, "name":"tomoya", "email":"a@a.com"}`)
+    b := []byte(`{"id":"1", "name":"", "email":"a@a.com"}`)
     p := new(User)
 
     if err := json.Unmarshal(b, &p); err != nil{
