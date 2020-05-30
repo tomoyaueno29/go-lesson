@@ -4,7 +4,7 @@ import (
     "database/sql"
     _ "github.com/mattn/go-sqlite3"
     "log"
-    // "fmt"
+    "fmt"
 )
 
 var DbConnection *sql.DB
@@ -79,5 +79,24 @@ func main(){
 
     tableName := "person"
     cmd = fmt.Sprintf("SELECT * FROM %s", tableName)
-    
+    rows, _ := DbConnection.Query(cmd)
+    defer rows.Close()
+
+    var pp []Person
+    for rows.Next() {
+        var p Person
+        err := rows.Scan(&p.Name, &p.Age)
+        if err != nil{
+            log.Fatalln(err)
+        }
+        pp = append(pp, p)
+    }
+    err = rows.Err()
+    if err != nil{
+        log.Fatalln(err)
+    }
+    for _,p := range pp{
+        fmt.Println(p.Name, p.Age)
+    }
+
 }
