@@ -4,34 +4,24 @@ import (
     "fmt"
 )
 
-type Human interface {
-    Say() string
-}
-
-type Person struct {
-    Name string
-}
-
-type Dog string {
-    Name string
-}
-
-func (p *Person) Say()  string{
-    p.Name = "Mr." + p.Name
-    fmt.Println(p.Name)
-    return p.Name
-}
-
-func Driver(human Human){
-    if human.Say() == "Mr.Mike"{
-        fmt.Println("Run")
-    }else{
-        fmt.Println("Get out")
+func do(i interface{}) {
+    // ii := i.(int)
+    // fmt.Println(ii)
+    switch v := i.(type) {
+    case int:
+        fmt.Printf("%T\n", v)
+    case string:
+        fmt.Printf("%T\n", v)
+    default:
+        fmt.Printf("%T\n", v)
     }
 }
 
 func main() {
-
-    var mike Human = &Person{"Mike"}
-    Driver(mike)
+    
+    do(10)
+    do(true)
+    var i interface{} = 10
+    ii := i.(int)
+    fmt.Println(ii)
 }
