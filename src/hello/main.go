@@ -4,7 +4,7 @@ import (
     "database/sql"
     _ "github.com/mattn/go-sqlite3"
     "log"
-    "fmt"
+    // "fmt"
 )
 
 var DbConnection *sql.DB
@@ -70,4 +70,10 @@ func main(){
     //     }
     // }
     // fmt.Println(p.Name, p.Age)
+
+    cmd = "DELETE FROM person WHERE name = ?"
+    _, err = DbConnection.Exec(cmd, "Nancy")
+    if err != nil{
+        log.Println(err)
+    }
 }
