@@ -14,7 +14,7 @@ func main(){
 	fmt.Println(string(content))
 
 	if err := ioutil.WriteFile("ioutil_temp.go", content, 0666); err != nil{
-		// log.Fatalln(err)
+		log.Fatalln(err)
 	}
 
 
