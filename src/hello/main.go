@@ -71,9 +71,13 @@ func main(){
     // }
     // fmt.Println(p.Name, p.Age)
 
-    cmd = "DELETE FROM person WHERE name = ?"
-    _, err = DbConnection.Exec(cmd, "Nancy")
-    if err != nil{
-        log.Println(err)
-    }
+    // cmd = "DELETE FROM person WHERE name = ?"
+    // _, err = DbConnection.Exec(cmd, "Nancy")
+    // if err != nil{
+    //     log.Println(err)
+    // }
+
+    tableName := "person"
+    cmd = fmt.Sprintf("SELECT * FROM %s", tableName)
+    
 }
