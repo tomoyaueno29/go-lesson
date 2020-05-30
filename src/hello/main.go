@@ -1,46 +1,38 @@
 package main
- 
+
 import (
-	"log"
-	"net/url"
-	"github.com/gorilla/websocket"
+    "context"
+    "fmt"
+    "time"
 )
- 
-type JsonRPC2 struct {
-	Version string `json:"jsonrpc"`
-	Method string `json:"method"`
-	Params interface{} `json:"params"`
-	Result interface{} `json:"result,omitempty"`
-	Id *int `json:"id,omitempty"`
+
+func longProcess(ctx context.Context, ch chan string) {
+    fmt.Println("run")
+    time.Sleep(2*time.Second)
+    fmt.Println("finish")
+    ch <- "result"
 }
-type SubscribeParams struct {
-	Channel string `json:"channel"`
-}
- 
+
+
 func main() {
-	u := url.URL{Scheme: "wss", Host: "ws.lightstream.bitflyer.com", Path: "/json-rpc"}
-	log.Printf("connecting to %s", u.String())
- 
-	c, _, err := websocket.DefaultDialer.Dial(u.String(), nil)
-	if err != nil {
-		log.Fatal("dial:", err)
-	}
-	defer c.Close()
- 
-	if err := c.WriteJSON(&JsonRPC2{Version: "2.0", Method: "subscribe", Params: &SubscribeParams{"lightning_ticker_BTC_JPY"}}); err != nil {
-		log.Fatal("subscribe:", err)
-		return
-	}
- 
-	for {
-		message := new(JsonRPC2)
-		if err := c.ReadJSON(message); err != nil {
-			log.Println("read:", err)
-			return
-		}
- 
-		if message.Method == "channelMessage" {
-			log.Println(message.Params);
-		}
-	}
+
+    ch := make(chan string)
+    ctx := context.Background()
+    ctx, cancel := context.WithTimeout(ctx, 1*time.Second)
+    defer cancel()
+    go longProcess(ctx, ch)
+
+    CTXLOOP:
+    for {
+        select {
+        case <- ctx.Done():
+            fmt.Println(ctx.Err())
+            break CTXLOOP
+
+        case <- ch:
+            fmt.Println("seccess")
+            break CTXLOOP
+        }
+    }
+    fmt.Println("#####################")
 }
