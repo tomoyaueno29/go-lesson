@@ -57,4 +57,17 @@ func main(){
     // for _,p := range pp{
     //     fmt.Println(p.Name, p.Age)
     // }
+
+    // cmd = "SELECT * FROM person where age = ?"
+    // row := DbConnection.QueryRow(cmd, 20)
+    // var p Person
+    // err = row.Scan(&p.Name, &p.Age)
+    // if err != nil{
+    //     if err == sql.ErrNoRows{
+    //         log.Println("No Row")
+    //     } else {
+    //         log.Println(err)
+    //     }
+    // }
+    // fmt.Println(p.Name, p.Age)
 }
