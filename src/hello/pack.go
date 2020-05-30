@@ -1,28 +1,15 @@
 package main
 
 import (
-	"bytes"
-    "fmt"
-	// "os"
-	"io/ioutil"
-	// "log"
+	"fmt"
+	"net/http"
+	
 )
 
 func main() {
-	// // 読み込み
-	// content, err := ioutil.ReadFile("pack.go")
-	// if err != nil{
-	// 	log.Fatalln(err)
-	// }
-	// fmt.Println(string(content))
-	// // buf := make([]byte, 100)
+	resp, _ := http.Get("http://example.com")
+	defer resp.Body.Close()
 
-	// if err := ioutil.WriteFile("ioutil_temp.go", content, 0666); err != nil{
-	// 	log.Fatalln(err)
-	// }
-
-	// r := bytes.NewBuffer([]byte("abc"))
-	// // バッファーに関しての読み込み
-	// content, _ := ioutil.ReadAll(r)
-	// fmt.Println(string(content))
+	body, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println(string(body))
 }
