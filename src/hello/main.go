@@ -2,36 +2,34 @@ package main
 
 import (
     "fmt"
+    "encoding/json"
+    "log"
+    "time"
 )
 
-type Human interface {
-    Say() string
-}
-
-type Person struct {
+type User struct {
+    Id int
     Name string
-}
-
-type Dog string {
-    Name string
-}
-
-func (p *Person) Say()  string{
-    p.Name = "Mr." + p.Name
-    fmt.Println(p.Name)
-    return p.Name
-}
-
-func Driver(human Human){
-    if human.Say() == "Mr.Mike"{
-        fmt.Println("Run")
-    }else{
-        fmt.Println("Get out")
-    }
+    Email string
+    Create time.Time
 }
 
 func main() {
+    src := `
+    {
+    "Id":1,
+    "Name":"tomoya",
+    "Email":"aa@a.com",
+    "time":"2020/4532928170223"
+    }
+    `
 
-    var mike Human = &Person{"Mike"}
-    Driver(mike)
+    u := new(User)
+
+    err := json.Unmarshal([]byte(src), u)
+    if err != nil{
+        log.Fatal(err)
+    }
+
+    fmt.Println(u)
 }
