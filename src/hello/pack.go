@@ -21,8 +21,8 @@ func main() {
 	// 	log.Fatalln(err)
 	// }
 
-	r := bytes.NewBuffer([]byte("abc"))
-	// バッファーに関しての読み込み
-	content, _ := ioutil.ReadAll(r)
-	fmt.Println(string(content))
+	// r := bytes.NewBuffer([]byte("abc"))
+	// // バッファーに関しての読み込み
+	// content, _ := ioutil.ReadAll(r)
+	// fmt.Println(string(content))
 }
