@@ -19,9 +19,15 @@ func main(){
         log.Fatal(err)
     }
 
-    cmd = "INSERT INTO person (name, age) VALUES (?, ?)"
-    _, err = DbConnection.Exec(cmd, "Mike", 24)
+    // cmd = "INSERT INTO person (name, age) VALUES (?, ?)"
+    // _, err = DbConnection.Exec(cmd, "Mike", 24)
+    // if err != nil{
+    //     log.Fatalln(err)
+    // }
+
+    cmd = "UPDATE person SET age = ? WHERE name = ?"
+    _, err = DbConnection.Exec(cmd, 25, "Mike")
     if err != nil{
-        log.Fatalln(err)
+        log.Fatal(err)
     }
 }
