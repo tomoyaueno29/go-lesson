@@ -1,10 +1,11 @@
 package main
 
 import (
+	"bytes"
     "fmt"
 	// "os"
 	"io/ioutil"
-	"log"
+	// "log"
 )
 
 func main() {
@@ -20,5 +21,8 @@ func main() {
 	// 	log.Fatalln(err)
 	// }
 
-
+	r := bytes.NewBuffer([]byte("abc"))
+	// バッファーに関しての読み込み
+	content, _ := ioutil.ReadAll(r)
+	fmt.Println(string(content))
 }
