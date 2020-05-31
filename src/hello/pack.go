@@ -22,6 +22,6 @@ func main() {
 	fmt.Println(base)
 
 	reference, _ := url.Parse("/test?a=1&b=2")
-
-	end
+	endpoint := base.ResolveReference(reference).String()
+	fmt.Println
 }
