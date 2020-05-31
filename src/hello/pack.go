@@ -2,28 +2,23 @@ package main
 
 import (
 	"fmt"
-	"crypto/hmac"
-	"encoding/hex"
-	"crypto/sha256"
+	// "io/ioutil"
+	// "net/http"
+	"net/url"
+	"path"
 )
 
-var DB = map[string]string{
-	"User1Key": "User1Secret",
-	"User2Key": "User2Secret",
-}
-
-func Server(apiKey, sign string, data []byte) {
-	
-}
-
 func main() {
-	const apiKey = "User2Key"
-	const apiSecret = "User2Secret"
+	// resp, _ := http.Get("http://example.com")
+	// defer resp.Body.Close()
+	// body, _ := ioutil.ReadAll(resp.Body)
+	// fmt.Println(string(body))
 
-	data := []byte("data")
-	h := hmac.New(sha256.New, []byte(apiSecret))
-	h.Write(data)
-
-	sign := hex.EncodeToString(h.Sum(nil))
-	fmt.Println(sign)
+	base, _ := url.Parse("http://foo.bar.jp/boo/?greeting=hello")
+	copiedURL := *base
+	fmt.Println(copiedURL.Path)
+	copiedURL.Path = path.Join(copiedURL.Path, "./bee")
+	
+	fmt.Printf("before: %s\n", base)
+    fmt.Printf("after : %s\n", &copiedURL)
 }
