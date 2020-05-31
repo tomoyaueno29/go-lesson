@@ -2,26 +2,28 @@ package main
 
 import (
 	"fmt"
-	// "io/ioutil"
-	// "net/http"
-	"net/url"
-	"log"
+	"crypto/hmac"
+	"encoding/hex"
+	"crypto/sha256"
 )
 
+var DB = map[string]string{
+	"User1Key": "User1Secret",
+	"User2Key": "User2Secret",
+}
+
+func Server(apiKey, sign string, data []byte) {
+	
+}
+
 func main() {
-	// resp, _ := http.Get("http://example.com")
-	// defer resp.Body.Close()
+	const apiKey = "User2Key"
+	const apiSecret = "User2Secret"
 
-	// body, _ := ioutil.ReadAll(resp.Body)
-	// fmt.Println(string(body))
+	data := []byte("data")
+	h := hmac.New(sha256.New, []byte(apiSecret))
+	h.Write(data)
 
-	base, err := url.Parse("http://example.com")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	fmt.Println(base)
-
-	reference, _ := url.Parse("/test?a=1&b=2")
-	endpoint := base.ResolveReference(reference).String()
-	fmt.Println
+	sign := hex.EncodeToString(h.Sum(nil))
+	fmt.Println(sign)
 }
