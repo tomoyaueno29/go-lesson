@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	// "io/ioutil"
-	// "net/http"
+	"net/http"
 	"net/url"
-	"path"
+	// "path"
 )
 
 func main() {
@@ -14,11 +14,19 @@ func main() {
 	// body, _ := ioutil.ReadAll(resp.Body)
 	// fmt.Println(string(body))
 
-	base, _ := url.Parse("http://foo.bar.jp/boo/?greeting=hello")
-	copiedURL := *base
-	fmt.Println(copiedURL.Path)
-	copiedURL.Path = path.Join(copiedURL.Path, "./bee")
-	
-	fmt.Printf("before: %s\n", base)
-    fmt.Printf("after : %s\n", &copiedURL)
+	base, _ := url.Parse("http://example.com")
+	reference, _ := url.Parse("/test?a=1&b=2")
+	endpoint := base.ResolveReference(reference).String()
+	fmt.Println(endpoint)
+	req, _ := http.NewRequest("GET", endpoint, nil)
+	req.Header.Add("If-None-Match", "W/wywyeyerf23")
+	q := req.URL.Query()
+	fmt.Println(q)
+	q.Add("c", "3&%")
+	fmt.Println(q.Encode())
+
+	req.URL.RawQuery = q.Encode()
+	// a=1&b=2&c=3%26%25
+
+
 }
