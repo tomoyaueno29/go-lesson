@@ -2,22 +2,27 @@ package main
 
 import (
 	"fmt"
-	"encoding/json"
+	// "encoding/json"
+	// "io/ioutil"
+	// "log"
 )
 
 type Person struct {
 	Name string
 	Age int
-	Nicknames []string
+}
+
+func one(x int) {
+	x = 1
 }
 
 func main() {
-	b := []byte(`{"name":"tomoya", "age":22, "nicknames":["a", "b", "c"]}`)
-	var p Person
-	if err := json.Unmarshal(b, &p); err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(p.Name, p.Age, p.Nicknames)
 
-	
+	var n int = 100
+	fmt.Println(n)
+	fmt.Println(&n)
+
+	var p *int = &n
+	fmt.Println(p)
+	fmt.Println(*p)
 }
