@@ -12,13 +12,16 @@ type Person struct {
 	Age int
 }
 
-func one(x *int) {
-	*x = 1
-}
-
 func main() {
-
-	var n int = 100
-	one(&n)
-	fmt.Println(n)
+    var i int = 100
+    var j int = 200
+    var p1 *int
+    var p2 *int
+    p1 = &i
+    p2 = &j
+    i = *p1 + *p2
+	p2 = p1
+	fmt.Println(*p2)
+    j = *p2 + i
+    fmt.Println(j)
 }
