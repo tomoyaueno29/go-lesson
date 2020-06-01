@@ -2,25 +2,38 @@ package main
 
 import (
 	"fmt"
-	// "encoding/json"
-	// "io/ioutil"
 )
 
-type Languages struct {
-	Name, LangType string
+type Human interface {
+	Say() string
 }
 
-func (l *Languages) Alter(name string, ltype string) {
-	(*l).Name = name
-	(*l).LangType = ltype
+type Person struct {
+	Name string
 }
 
-func New(name string, langtype string) *Languages {
-	return &Languages{name, langtype}
+type Dog struct {
+	Name string
+}
+
+func (p *Person) Say()  string{
+	p.Name = "Mr." + p.Name
+	fmt.Println(p.Name)
+	return p.Name
+}
+
+func DriveCar(human Human) {
+	if human.Say() == "Mr.Mike"{
+		fmt.Println("Run")
+	}else{
+		fmt.Println("Get out")
+	}
 }
 
 func main() {
-	 l := New("jap", "japanese")
-	 l.Alter("en", "english")
-	 fmt.Println(l.Name, l.LangType)
+	var mike Human = &Person{Name:"Mike"}
+	DriveCar(mike)
+
+	dog := &Dog{Name:"Nina"}
+	
 }
